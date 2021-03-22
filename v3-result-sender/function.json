@@ -1,0 +1,14 @@
+{
+    "bindings": [
+      {
+        "name": "resultSender",
+        "type": "serviceBusTrigger",
+        "direction": "in",
+        "queueName": "tetcmresults",
+        "connection": "SERVICE_BUS_CONNECTION_STRING_TRAPI",
+        "accessRights": "listen"
+      }
+    ],
+    "scriptFile": "../dist/v3/resultSender/index.js"
+  }
+  

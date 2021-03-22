@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+  "APPINSIGHTS_INSTRUMENTATIONKEY": "",
+  "FUNCTIONS_WORKER_RUNTIME": "node",
+  "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+  "AzureWebJobsServiceBus": "UseDevelopmentStorage=true",
+  "AzureWebJobsSecretStorageType": "files",
+  "AZURE_GLOBAL_STORAGE": "",
+  "SERVICE_BUS_CONNECTION_STRING_PMT_EVENTS": "",
+  "SERVICE_BUS_CONNECTION_STRING_TRAPI": ""
+  }
+ }

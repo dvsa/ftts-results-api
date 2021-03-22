@@ -1,0 +1,763 @@
+{
+  "$ref": "#/definitions/SARASResultBody",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "SARASAccommodationAssistant": {
+      "additionalProperties": false,
+      "properties": {
+        "AccommodationType": {
+          "items": {
+            "$ref": "#/definitions/SARASAccommodationType"
+          },
+          "type": "array"
+        },
+        "AdmittedBy": {
+          "maxLength": 100,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "AssistantName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "AssistantSignature": {
+          "maxLength": 200000,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "DateTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Organisation": {
+          "maxLength": 100,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SARASAccommodationType": {
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "type": "number"
+    },
+    "SARASAdmission": {
+      "additionalProperties": false,
+      "properties": {
+        "AdmittedBy": {
+          "maxLength": 100,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "CandidatePhoto": {
+          "maxLength": 700000,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "CandidateSignature": {
+          "maxLength": 200000,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "DateTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SARASAppointment": {
+      "additionalProperties": false,
+      "properties": {
+        "DateTime": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "DateTime"
+      ],
+      "type": "object"
+    },
+    "SARASCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "Address": {
+          "maxLength": 1000,
+          "minLength": 10,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "CandidateID": {
+          "maxLength": 50,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "DOB": {
+          "format": "date",
+          "type": "string"
+        },
+        "DrivingLicenseNumber": {
+          "maxLength": 100,
+          "minLength": 5,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "EntitlementConfirmation": {
+          "maxLength": 50,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "Gender": {
+          "$ref": "#/definitions/SARASGender"
+        },
+        "Name": {
+          "maxLength": 50,
+          "minLength": 2,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "PersonalReferenceNumber": {
+          "maxLength": 50,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "Surname": {
+          "maxLength": 50,
+          "minLength": 1,
+          "notEmpty": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "CandidateID",
+        "Name",
+        "Surname",
+        "DOB",
+        "Gender",
+        "DrivingLicenseNumber"
+      ],
+      "type": "object"
+    },
+    "SARASColourFormat": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SARASDeliveryMode": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SARASGender": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SARASHPTItemResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "Attempted": {
+          "type": "boolean"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "FrameRate": {
+          "type": "integer"
+        },
+        "InappropriateKeyingsInvoked": {
+          "type": "integer"
+        },
+        "Order": {
+          "type": "integer"
+        },
+        "Score": {
+          "type": "number"
+        },
+        "ScoringWindows": {
+          "items": {
+            "$ref": "#/definitions/SARASScoringWindow"
+          },
+          "type": "array"
+        },
+        "Topic": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "Type": {
+          "$ref": "#/definitions/SARASItemType"
+        },
+        "UserResponses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "UsersScore": {
+          "items": {
+            "$ref": "#/definitions/SARASUsersScore"
+          },
+          "type": "array"
+        },
+        "Version": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASHPTSection": {
+      "additionalProperties": false,
+      "properties": {
+        "EndTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Items": {
+          "items": {
+            "$ref": "#/definitions/SARASHPTItemResponse"
+          },
+          "type": "array"
+        },
+        "MaxScore": {
+          "type": "number"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "integer"
+        },
+        "Percentage": {
+          "type": "number"
+        },
+        "StartTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "TotalScore": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASHPTTestResult": {
+      "additionalProperties": false,
+      "properties": {
+        "FormID": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "Percentage": {
+          "type": "number"
+        },
+        "ResultStatus": {
+          "$ref": "#/definitions/SARASStatus"
+        },
+        "Sections": {
+          "items": {
+            "$ref": "#/definitions/SARASHPTSection"
+          },
+          "type": "array"
+        },
+        "TestScore": {
+          "type": "number"
+        },
+        "TotalScore": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASItemType": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SARASMCQItemResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "Attempted": {
+          "type": "boolean"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "CorrectChoice": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Order": {
+          "type": "integer"
+        },
+        "Score": {
+          "type": "number"
+        },
+        "TimeSpent": {
+          "type": "integer"
+        },
+        "Topic": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "Type": {
+          "$ref": "#/definitions/SARASItemType"
+        },
+        "UserResponses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Version": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASMCQSection": {
+      "additionalProperties": false,
+      "properties": {
+        "EndTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Items": {
+          "items": {
+            "$ref": "#/definitions/SARASMCQItemResponse"
+          },
+          "type": "array"
+        },
+        "MaxScore": {
+          "type": "number"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "integer"
+        },
+        "Percentage": {
+          "type": "number"
+        },
+        "StartTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "TotalScore": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASMCQTestResult": {
+      "additionalProperties": false,
+      "properties": {
+        "FormID": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "Percentage": {
+          "type": "number"
+        },
+        "ResultStatus": {
+          "$ref": "#/definitions/SARASStatus"
+        },
+        "Sections": {
+          "items": {
+            "$ref": "#/definitions/SARASMCQSection"
+          },
+          "type": "array"
+        },
+        "TestScore": {
+          "type": "number"
+        },
+        "TotalScore": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASRegion": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SARASResultBody": {
+      "additionalProperties": false,
+      "properties": {
+        "AccommodationAssistant": {
+          "items": {
+            "$ref": "#/definitions/SARASAccommodationAssistant"
+          },
+          "type": "array"
+        },
+        "Admission": {
+          "$ref": "#/definitions/SARASAdmission"
+        },
+        "Appointment": {
+          "$ref": "#/definitions/SARASAppointment"
+        },
+        "Candidate": {
+          "$ref": "#/definitions/SARASCandidate"
+        },
+        "HPTTestResult": {
+          "$ref": "#/definitions/SARASHPTTestResult"
+        },
+        "MCQTestResult": {
+          "$ref": "#/definitions/SARASMCQTestResult"
+        },
+        "SurveyTest": {
+          "$ref": "#/definitions/SARASSurveyTest"
+        },
+        "TestCentre": {
+          "$ref": "#/definitions/SARASTestCentre"
+        },
+        "TestInformation": {
+          "$ref": "#/definitions/SARASTestInformation"
+        },
+        "TrialTest": {
+          "$ref": "#/definitions/SARASTrialTest"
+        }
+      },
+      "required": [
+        "Candidate",
+        "TestCentre",
+        "Appointment",
+        "TestInformation"
+      ],
+      "type": "object"
+    },
+    "SARASScoringWindow": {
+      "additionalProperties": false,
+      "properties": {
+        "Code": {
+          "type": "string"
+        },
+        "EndFrame": {
+          "type": "integer"
+        },
+        "Score": {
+          "type": "number"
+        },
+        "StartFrame": {
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SARASStatus": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "number"
+    },
+    "SARASSurveyItemResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "Attempted": {
+          "type": "boolean"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "integer"
+        },
+        "Topic": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "Type": {
+          "$ref": "#/definitions/SARASItemType"
+        },
+        "UserResponses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Version": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASSurveySection": {
+      "additionalProperties": false,
+      "properties": {
+        "Items": {
+          "items": {
+            "$ref": "#/definitions/SARASSurveyItemResponse"
+          },
+          "type": "array"
+        },
+        "Name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SARASSurveyTest": {
+      "additionalProperties": false,
+      "properties": {
+        "Sections": {
+          "items": {
+            "$ref": "#/definitions/SARASSurveySection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SARASTestCentre": {
+      "additionalProperties": false,
+      "properties": {
+        "Region": {
+          "$ref": "#/definitions/SARASRegion"
+        },
+        "TestCentreCode": {
+          "maxLength": 50,
+          "minLength": 2,
+          "notEmpty": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "TestCentreCode",
+        "Region"
+      ],
+      "type": "object"
+    },
+    "SARASTestInformation": {
+      "additionalProperties": false,
+      "properties": {
+        "AccommodationType": {
+          "items": {
+            "$ref": "#/definitions/SARASAccommodationType"
+          },
+          "type": "array"
+        },
+        "CertificationID": {
+          "maxLength": 10,
+          "minLength": 8,
+          "notEmpty": true,
+          "type": "string"
+        },
+        "ColourFormat": {
+          "$ref": "#/definitions/SARASColourFormat"
+        },
+        "DeliveryMode": {
+          "$ref": "#/definitions/SARASDeliveryMode"
+        },
+        "EndTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Invigilator": {
+          "type": "string"
+        },
+        "OverallStatus": {
+          "$ref": "#/definitions/SARASStatus"
+        },
+        "StartTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "TestType": {
+          "$ref": "#/definitions/SARASTestType"
+        },
+        "TextLanguage": {
+          "$ref": "#/definitions/SARASTextLanguage"
+        },
+        "VoiceOverLanguage": {
+          "$ref": "#/definitions/SARASVoiceOverLanguage"
+        },
+        "WorkStation": {
+          "type": "string"
+        },
+        "WorkStationPerformance": {
+          "additionalProperties": false,
+          "properties": {
+            "CPU": {
+              "type": "integer"
+            },
+            "RAM": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "DeliveryMode",
+        "TestType",
+        "TextLanguage",
+        "OverallStatus"
+      ],
+      "type": "object"
+    },
+    "SARASTestType": {
+      "enum": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "type": "number"
+    },
+    "SARASTextLanguage": {
+      "enum": [
+        0,
+        1
+      ],
+      "type": "number"
+    },
+    "SARASTrialItemResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "Attempted": {
+          "type": "boolean"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Order": {
+          "type": "integer"
+        },
+        "Topic": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "Type": {
+          "$ref": "#/definitions/SARASItemType"
+        },
+        "UserResponses": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "Version": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASTrialSection": {
+      "additionalProperties": false,
+      "properties": {
+        "Items": {
+          "items": {
+            "$ref": "#/definitions/SARASTrialItemResponse"
+          },
+          "type": "array"
+        },
+        "Name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SARASTrialTest": {
+      "additionalProperties": false,
+      "properties": {
+        "Sections": {
+          "items": {
+            "$ref": "#/definitions/SARASTrialSection"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SARASUsersScore": {
+      "additionalProperties": false,
+      "properties": {
+        "Code": {
+          "type": "string"
+        },
+        "Score": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SARASVoiceOverLanguage": {
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "type": "number"
+    }
+  }
+}
