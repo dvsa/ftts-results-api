@@ -32,7 +32,7 @@
     "@dvsa/egress-filtering": "1.0.1",
     "@dvsa/ftts-auth-client": "1.0.1",
     "ajv": "6.12.6",
-    "applicationinsights": "1.8.8",
+    "applicationinsights": "1.8.10",
     "dayjs": "1.9.4",
     "dotenv": "8.2.0",
     "dynamics-web-api": "1.6.13",
