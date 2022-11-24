@@ -1,0 +1,119 @@
+{
+  "name": "ftts-results-api",
+  "description": "Results API for FTTS",
+  "engines": {
+    "node": ">=14.x",
+    "npm": ">=7.20"
+  },
+  "scripts": {
+    "audit": "npm audit --registry https://registry.npmjs.org/",
+    "audit:fix": "npm audit fix --registry https://registry.npmjs.org/",
+    "audit:fix-force": "npm audit fix --force --registry https://registry.npmjs.org/",
+    "build": "npm run clean && tsc",
+    "build:production": "npm run prestart && npm prune --production",
+    "clean": "rimraf dist",
+    "copy-config": "cp local.settings.example.json local.settings.json",
+    "coverage-ci": "jest --coverage --reporters=jest-junit --reporters=jest-standard-reporter --ci",
+    "func:start": "func start -p 7074",
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "eslint --ext .js,.ts . --fix",
+    "lint:report": "eslint --ext .js,.ts . -f json -o lint/report.json",
+    "local:watch": "nodemon",
+    "prefunc:start": "npm run build && func extensions install",
+    "prestart": "npm run build && func extensions install",
+    "sonar": "npm run test:coverage && npm run lint:report && sonar-scanner",
+    "start": "npm run func:start",
+    "test": "jest",
+    "test:coverage": "jest --verbose --coverage",
+    "test:watch": "jest --watch",
+    "watch": "tsc --w"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint && npm run test"
+    }
+  },
+  "dependencies": {
+    "@azure/service-bus": "7.4.0",
+    "@azure/storage-blob": "12.2.1",
+    "@dvsa/azure-logger": "5.2.0",
+    "@dvsa/egress-filtering": "4.0.2",
+    "@dvsa/ftts-auth-client": "5.0.2",
+    "ajv": "6.12.6",
+    "dayjs": "1.9.4",
+    "dynamics-web-api": "1.6.13",
+    "exifremove": "1.0.1",
+    "jimp": "^0.16.0",
+    "queue-promise": "2.2.1",
+    "reflect-metadata": "0.1.13",
+    "semaphore-async-await": "1.5.1",
+    "uuid": "8.3.1"
+  },
+  "devDependencies": {
+    "@azure/functions": "1.2.3",
+    "@babel/core": "7.12.3",
+    "@babel/plugin-proposal-class-properties": "7.12.1",
+    "@babel/plugin-proposal-decorators": "7.12.1",
+    "@babel/preset-env": "7.12.1",
+    "@babel/preset-typescript": "7.12.1",
+    "@dvsa/eslint-config-ts": "2.4.0",
+    "@types/jest": "26.0.15",
+    "@types/jest-when": "2.7.2",
+    "@types/mock-fs": "4.13.0",
+    "@types/node": "14.14.6",
+    "@types/uuid": "8.3.0",
+    "axios": "0.23.0",
+    "azure-functions-core-tools": "*",
+    "babel-jest": "26.6.3",
+    "husky": "4.3.8",
+    "jest": "26.6.3",
+    "jest-junit": "13.0.0",
+    "jest-mock-extended": "2.0.4",
+    "jest-standard-reporter": "2.0.0",
+    "jest-when": "3.5.1",
+    "mock-fs": "4.13.0",
+    "mockdate": "3.0.5",
+    "nodemon": "2.0.18",
+    "rimraf": "3.0.2",
+    "ts-jest": "26.4.3",
+    "typescript": "4.3.5"
+  },
+  "jest": {
+    "coverageDirectory": "<rootDir>/coverage",
+    "coverageReporters": [
+      "lcov",
+      "html",
+      "text"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/**"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "roots": [
+      "<rootDir>/src",
+      "<rootDir>/tests"
+    ],
+    "setupFiles": [
+      "<rootDir>/tests/mocks/setup-jest.ts"
+    ],
+    "globalSetup": "<rootDir>/global-jest-setup.js",
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.[jt]sx?$",
+    "testPathIgnorePatterns": [
+      "<rootDir>/tests/mocks"
+    ],
+    "testEnvironment": "node"
+  },
+  "optionalDependencies": {
+    "fsevents": "2.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dev.azure.com/DvsaDev/ftts-beta/_git/ftts-beta"
+  },
+  "author": "",
+  "license": "MIT"
+}

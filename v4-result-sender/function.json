@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "name": "resultSender",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "%CRON_TIMER%",
+      "runOnStartup": false,
+      "useMonitor": true
+    }
+  ],
+  "scriptFile": "../dist/v4/resultSender/index.js"
+}
